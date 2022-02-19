@@ -40,9 +40,9 @@ func parseRecord(record *ns1.ZoneRecord, zoneName string, defaultTTL int) string
 		recordString := ""
 
 		if record.TTL == defaultTTL {
-			recordString = fmt.Sprintf("%s					  IN	%s	", recordName, recordType)
+			recordString = fmt.Sprintf(ZoneRecordPrefixNoTTL, recordName, recordType)
 		} else {
-			recordString = fmt.Sprintf("%s				%d	IN	%s	", recordName, record.TTL, record.Type)
+			recordString = fmt.Sprintf(ZoneRecordPrefix, recordName, record.TTL, record.Type)
 		} // We basically only need to append `<data_parsed>\n` to the record string.
 
 		// if the type is TXT, we need to add the quotes around the value and escape the quotes.
@@ -80,8 +80,8 @@ func getBaseZoneFileHeader(zone *ns1.Zone) string {
 	// SOA record in the format of:
 	// @                        IN SOA <primary_master>. <hostmaster>. (\n                        		<serial>         ; serial number\n                        		<refresh>         ; refresh\n                        		<retry>         ; retry\n                        		<expire>         ; expire\n                        		<ttl>         ) ; default ttl\n
 
-	header := fmt.Sprintf(";\n;  Database file %s.dns for Default Zone scope in zone %s.\n;      Zone version:  %d\n;\n\n", zoneName, zoneName, zoneVersion)
-	soaRecord := fmt.Sprintf("@ 					  IN	SOA %s. %s. (\n                        		%d         ; serial number\n                        		%d         ; refresh\n                        		%d         ; retry\n                        		%d         ; expire\n                        		%d         ) ; default ttl\n", soa, soaAuthority, zoneVersion, zone.Refresh, zone.Retry, zone.Expiry, zone.TTL)
+	header := fmt.Sprintf(ZoneHeader, zoneName, zoneName, zoneVersion)
+	soaRecord := fmt.Sprintf(ZoneSOARecord, soa, soaAuthority, zoneVersion, zone.Refresh, zone.Retry, zone.Expiry, zone.TTL)
 
 	// Append these.
 	header += soaRecord
@@ -91,7 +91,7 @@ func getBaseZoneFileHeader(zone *ns1.Zone) string {
 
 	// Iterate zone NS records.
 	for _, ns := range zone.DNSServers {
-		header += fmt.Sprintf("@ 					  IN	NS	%s.\n", ns)
+		header += fmt.Sprintf(ZoneNSRecord, ns)
 	}
 
 	// Append record header.
