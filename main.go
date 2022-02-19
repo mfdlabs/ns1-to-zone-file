@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	zoneFilesPath          = flag.String("zone-files-path", "", "A path to the directory that houses the NS1 exported Zone files (JSON).")
+	zoneFilesPath          = flag.String("zone-files-path", "", "A path to the directory that houses the NS1 exported Zone files (JSON Files).")
 	dnsZoneFilesOutputPath = flag.String("dns-zone-files-output-path", "", "A path to the directory that will house the DNS Zone files.")
 )
 
