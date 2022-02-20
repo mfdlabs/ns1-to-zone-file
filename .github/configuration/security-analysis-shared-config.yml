@@ -1,0 +1,6 @@
+name: "CodeQL Security Analysis Shared Configuration"
+
+paths:
+    - ./pkg
+    - main.go
+    - go.mod
