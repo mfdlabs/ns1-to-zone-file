@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"golang.repositories.vmminfra.local/pkg/ns1-to-zone-file/pkg/helper"
+	"github.com/mfdlabs-grid-development/ns1-to-zone-file/pkg/helper"
 )
 
 // FeedPtr represents the dynamic metadata value in which a feed is providing the value.
