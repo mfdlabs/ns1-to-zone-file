@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"golang.repositories.vmminfra.local/pkg/ns1-to-zone-file/pkg/ns1"
+	"github.com/mfdlabs-grid-development/ns1-to-zone-file/pkg/ns1"
 )
 
 func ReadZoneFilesDirectory(dir string) ([]ns1.Zone, error) {

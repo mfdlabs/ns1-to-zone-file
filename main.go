@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"golang.repositories.vmminfra.local/pkg/ns1-to-zone-file/pkg/zone_file"
+	"github.com/mfdlabs-grid-development/ns1-to-zone-file/pkg/zone_file"
 )
 
 var (

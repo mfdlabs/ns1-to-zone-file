@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"regexp"
 
-	"golang.repositories.vmminfra.local/pkg/ns1-to-zone-file/pkg/ns1"
+	"github.com/mfdlabs-grid-development/ns1-to-zone-file/pkg/ns1"
 )
 
 func parseRecord(record *ns1.ZoneRecord, zoneName string, defaultTTL int) string {
