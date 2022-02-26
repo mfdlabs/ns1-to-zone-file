@@ -76,7 +76,7 @@ func getBaseZoneFileHeader(zone *ns1.Zone) string {
 	soaAuthority = regexp.MustCompile(`@`).ReplaceAllString(soaAuthority, ".")
 
 	// Header in the format of:
-	// ;\n;  Database file <zone_name>.dns for Default Zone scope in zone <zone_name>.\n;      Zone version:  <serial>\n;\n\n
+	// ;\n;  Database file <zone_name>.zone for Default Zone scope in zone <zone_name>.\n;      Zone version:  <serial>\n;\n\n
 	// SOA record in the format of:
 	// @                        IN SOA <primary_master>. <hostmaster>. (\n                        		<serial>         ; serial number\n                        		<refresh>         ; refresh\n                        		<retry>         ; retry\n                        		<expire>         ; expire\n                        		<ttl>         ) ; default ttl\n
 
@@ -108,8 +108,8 @@ func getBaseZoneFileHeader(zone *ns1.Zone) string {
 func WriteZoneFile(zone *ns1.Zone, outputDir string) error {
 	zoneFileHeader := getBaseZoneFileHeader(zone)
 
-	// filename is outputDir/<zone_name>.dns
-	filename := fmt.Sprintf("%s/%s.dns", outputDir, zone.Zone)
+	// filename is outputDir/<zone_name>.zone
+	filename := fmt.Sprintf("%s/%s.zone", outputDir, zone.Zone)
 
 	// Write the zone file.
 	return ioutil.WriteFile(filename, []byte(zoneFileHeader), 0644)
